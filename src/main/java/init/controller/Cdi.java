@@ -1,6 +1,6 @@
 package init.controller;
 
-import java.util.ArrayList;
+import java.text.NumberFormat;
 
 public class Cdi {
 
@@ -8,6 +8,7 @@ public class Cdi {
     private int yearsOfInvestment;
     private final double tax = 11.68 / 12 / 100;
     private double monthInvest;
+    private final NumberFormat nf = NumberFormat.getCurrencyInstance();
 
     public Cdi() {
         this(0, 0, 0);
@@ -77,23 +78,28 @@ public class Cdi {
         return getTotal() - getTotalInvest();
     }
 
-    public ArrayList<Double> getMonthRend() {
+    public String[][] getResultInfos() {
         double total = getInitialInvestment();
+        double rend = 0;
         int months = getYearsOfInvestment() * 12;
-        ArrayList<Double> listOfRend = new ArrayList<>();
+        String[][] infos = new String[months][3];
 
-        for (int i = 1; i <= months; i++) {
-            if (i == 1) {
-                total += total * getTax();
-                listOfRend.add(total);
-            } else {
-                total += getMonthInvest();
-                total += total * getTax();
-                listOfRend.add(total);
+        for (int i = 0; i < months; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (j == 0) {
+                    infos[i][j] = (i + 1) + "º";
+                } else if (j == 1) {
+                    total += getMonthInvest();
+                    rend = total * getTax();
+                    infos[i][j] = nf.format(rend);
+                } else {
+                    total += getMonthInvest();
+                    total += total * getTax();
+                    infos[i][j] = nf.format(total);
+                }
             }
         }
-        return listOfRend;
+        return infos;
     }
 
-    
 }
