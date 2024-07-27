@@ -1,0 +1,5 @@
+#  ignorando target #
+target/
+
+# VS Code #
+.vscode/
