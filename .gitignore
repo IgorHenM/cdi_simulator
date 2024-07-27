@@ -1,5 +1,5 @@
 #  ignorando target #
-target
+*/target/*
 
 # VS Code #
-.vscode
+/.vscode/
