@@ -1,6 +1,9 @@
 package init.controller;
 
 import java.text.NumberFormat;
+/**
+ * This class its necessary to all Cdi functions: calculate month cash yield, calculate total month cash amounth, total cash yield, total cash investment and total cash amount.
+ */
 
 public class Cdi {
 
@@ -23,7 +26,11 @@ public class Cdi {
     public double getInitialInvestment() {
         return initialInvestment;
     }
-
+    
+     /**
+      * This method its necessary to all calculations because represent the initial investment
+      * @param initialInvestment Initial investment
+      */
     public void setInitialInvestment(double initialInvestment) {
         this.initialInvestment = initialInvestment;
     }
@@ -31,6 +38,10 @@ public class Cdi {
     public int getYearsOfInvestment() {
         return yearsOfInvestment;
     }
+    /**
+     * This method its necessary to all calculations because represent the years of investment
+     * @param yearsOfInvestment The investment time (years)
+     */
 
     public void setYearsOfInvestment(int yearsOfInvestment) {
         this.yearsOfInvestment = yearsOfInvestment;
@@ -54,7 +65,7 @@ public class Cdi {
 
         for (int i = 1; i <= months; i++) {
             if (i == 1) {
-                total += getInitialInvestment() * getTax();
+                total += total * getTax();
             } else {
                 total += getMonthInvest();
                 total += total * getTax();
@@ -80,23 +91,38 @@ public class Cdi {
 
     public String[][] getResultInfos() {
         double total = getInitialInvestment();
+        double totalMonth = getInitialInvestment();
+        double initialMonth = getInitialInvestment();
         double rend = 0;
         int months = getYearsOfInvestment() * 12;
         String[][] infos = new String[months][3];
 
         for (int i = 0; i < months; i++) {
             for (int j = 0; j < 3; j++) {
-                if (j == 0) {
-                    infos[i][j] = (i + 1) + "º";
-                } else if (j == 1) {
-                    total += getMonthInvest();
-                    rend = total * getTax();
-                    infos[i][j] = nf.format(rend);
+                if (i == 0) {
+                    if (j == 0) {
+                        infos[i][j] = "1º";
+                    } else if (j == 1) {
+                        infos[i][j] = nf.format(getInitialInvestment() * getTax());
+                    } else {
+                        infos[i][j] = nf.format(initialMonth + (initialMonth * getTax()));
+                        total = initialMonth + (initialMonth * getTax());
+                        totalMonth = initialMonth + (initialMonth * getTax());
+                    }
                 } else {
-                    total += getMonthInvest();
-                    total += total * getTax();
-                    infos[i][j] = nf.format(total);
+                    if (j == 0) {
+                        infos[i][j] = (i + 1) + "º";
+                    } else if (j == 1) {
+                        total += getMonthInvest();
+                        rend = total * getTax();
+                        infos[i][j] = nf.format(rend);
+                    } else {
+                        totalMonth += getMonthInvest();
+                        totalMonth += totalMonth * getTax();
+                        infos[i][j] = nf.format(totalMonth);
+                    }
                 }
+
             }
         }
         return infos;

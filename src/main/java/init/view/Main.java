@@ -332,10 +332,7 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            
-        }
+        
         btnCalc.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
