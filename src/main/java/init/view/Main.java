@@ -50,20 +50,12 @@ public class Main extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        inputInitInvest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        
 
         descInitialInvestment.setFont(new java.awt.Font("Consolas", 0, 14));
         descInitialInvestment.setText("Investimento inicial:");
 
-        inputYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        
 
         descYears.setFont(new java.awt.Font("Consolas", 0, 14));
         descYears.setText("Tempo do Investimento em anos:");
@@ -71,11 +63,7 @@ public class Main extends javax.swing.JFrame {
         descMonth.setFont(new java.awt.Font("Consolas", 0, 14));
         descMonth.setText("Investimento mensal:");
 
-        inputMonthInvest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
+        
 
         jLabel5.setFont(new java.awt.Font("Consolas", 0, 10));
         jLabel5.setText("*Se for investimento fixo, adicione 0.");
@@ -168,11 +156,7 @@ public class Main extends javax.swing.JFrame {
 
         total.setFont(new java.awt.Font("Consolas", 1, 28)); // NOI18N
         total.setText("R$: 0,00");
-        total.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalActionPerformed(evt);
-            }
-        });
+        
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -204,11 +188,7 @@ public class Main extends javax.swing.JFrame {
 
         rendTotal.setFont(new java.awt.Font("Consolas", 1, 28)); // NOI18N
         rendTotal.setText("R$: 0,00");
-        rendTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rendTotalActionPerformed(evt);
-            }
-        });
+        
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -240,11 +220,7 @@ public class Main extends javax.swing.JFrame {
 
         finalValue.setFont(new java.awt.Font("Consolas", 1, 28)); // NOI18N
         finalValue.setText("R$: 0,00");
-        finalValue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finalValueActionPerformed(evt);
-            }
-        });
+        
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -360,9 +336,12 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 if (initialInv > 0 && yearInves > 0 && monthInvest > 0) {
+                    cdb.setTax();
                     cdb.setInitialInvestment(initialInv);
                     cdb.setYearsOfInvestment(yearInves);
                     cdb.setMonthInvest(monthInvest);
+                    log.setFileContent(cdb.fileContent());
+                    log.createFile();
 
                     tableResults.setModel(new javax.swing.table.DefaultTableModel(
                             cdb.getResultInfos(),
@@ -381,70 +360,19 @@ public class Main extends javax.swing.JFrame {
 
         }
         );
-        pack();
-    }// </editor-fold>                        
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void totalActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void rendTotalActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void finalValueActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
+        btnOpenReg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                log.openLocal();
             }
         });
-    }
+        pack();
+    }                        
 
-    // Variables declaration - do not modify   
+    
+    
     private final Cdi cdb = new Cdi();
+    private final Recibo log = new Recibo();
 
     private javax.swing.JButton btnCalc;
     private javax.swing.JButton btnOpenReg;
@@ -471,5 +399,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField rendTotal;
     private javax.swing.JTable tableResults;
     private javax.swing.JTextField total;
-    // End of variables declaration                   
+                       
 }
