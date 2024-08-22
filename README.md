@@ -17,4 +17,4 @@ Este sistema se trata de uma aplicação desktop com o intuito de calcular inves
 
 `[![Java](https://skillicons.dev/icons?i=java)](https://skillicons.dev)`
 
-
+> Desenvolvedor: Igor Henrique Mori
