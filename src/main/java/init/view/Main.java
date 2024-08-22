@@ -2,12 +2,12 @@ package init.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.text.NumberFormat;
 
 import javax.swing.JOptionPane;
 
-import init.controller.*;
+import init.controller.Cdi;
+import init.controller.Recibo;
 
 public class Main extends javax.swing.JFrame {
 
@@ -335,7 +335,7 @@ public class Main extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Digite um investimento mensal compativel!");
                 }
 
-                if (initialInv > 0 && yearInves > 0 && monthInvest > 0) {
+                if (initialInv > 0 && yearInves > 0) {
                     cdb.setTax();
                     cdb.setInitialInvestment(initialInv);
                     cdb.setYearsOfInvestment(yearInves);
