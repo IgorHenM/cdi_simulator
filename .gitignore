@@ -3,3 +3,6 @@
 
 # VS Code #
 .vscode/
+
+# special infos #
+src/main/resources/.env
