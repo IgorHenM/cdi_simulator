@@ -108,7 +108,7 @@ public class Cdi {
 
         for (int i = 0; i < months; i++) {
             for (int j = 0; j < 3; j++) {
-                if (i == 0) {
+                if (i == 0) {//primeiro mês
                     if (j == 0) {
                         infos[i][j] = "1º";
                     } else if (j == 1) {
@@ -118,12 +118,13 @@ public class Cdi {
                         total = initialMonth + (initialMonth * getTax());
                         totalMonth = initialMonth + (initialMonth * getTax());
                     }
-                } else {
-                    if (j == 0) {
+                } else {//demais meses
+                    if (j == 0) {//declaração de mês
                         infos[i][j] = (i + 1) + "º";
                     } else if (j == 1) {
                         total += getMonthInvest();
                         rend = total * getTax();
+                        total += rend;
                         infos[i][j] = nf.format(rend);
                     } else {
                         totalMonth += getMonthInvest();

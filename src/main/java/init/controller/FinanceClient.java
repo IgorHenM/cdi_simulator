@@ -1,19 +1,17 @@
 package init.controller;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import io.github.cdimascio.dotenv.Dotenv;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class FinanceClient {
-    private final Dotenv dotenv = Dotenv.configure().directory("src\\main\\resources\\.env").load();
 
-    private final String apiKey = dotenv.get("API_KEY");
-    private final String baseUrl = dotenv.get("URL_API");
+    private final String apiKey = "476394bc";
+    private final String baseUrl = "https://api.hgbrasil.com/finance";
 
     public double getCdiTax() {
         OkHttpClient client = new OkHttpClient();
