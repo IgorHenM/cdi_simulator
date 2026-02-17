@@ -4,5 +4,8 @@
 # VS Code #
 .vscode/
 
+# IntelliJ #
+.idea
+
 # special infos #
 .env
