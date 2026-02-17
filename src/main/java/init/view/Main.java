@@ -342,6 +342,7 @@ public class Main extends javax.swing.JFrame {
                     cdb.setTax();
                     cdb.setInitialInvestment(initialInv);
                     cdb.setYearsOfInvestment(yearInves);
+                    cdb.setMonths();
                     cdb.setMonthInvest(monthInvest);
                     log.setFileContent(cdb.fileContent());
                     log.createFile();
