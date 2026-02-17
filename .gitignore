@@ -5,4 +5,4 @@
 .vscode/
 
 # special infos #
-src/main/resources/.env
+.env

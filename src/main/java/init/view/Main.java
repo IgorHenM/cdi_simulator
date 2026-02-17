@@ -338,6 +338,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 if (initialInv > 0 && yearInves > 0) {
+                    cdb.setYearTax();
                     cdb.setTax();
                     cdb.setInitialInvestment(initialInv);
                     cdb.setYearsOfInvestment(yearInves);

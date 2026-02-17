@@ -13,6 +13,7 @@ public class Cdi {
     private double initialInvestment;
     private int yearsOfInvestment;
     private double tax = 0;
+    private double yearTax = 0;
     private double monthInvest;
     private final NumberFormat nf = NumberFormat.getCurrencyInstance();
     private final FinanceClient fc = new FinanceClient();
@@ -53,11 +54,19 @@ public class Cdi {
     }
 
     public void setTax() {
-        this.tax = fc.getCdiTax() / 12 / 100;
+        this.tax = this.yearTax / 12 / 100;
     }
 
     public double getTax() {
         return tax;
+    }
+
+    public double getYearTax() {
+        return yearTax;
+    }
+
+    public void setYearTax() {
+        this.yearTax = fc.getCdiTax();
     }
 
     public double getMonthInvest() {
@@ -145,7 +154,7 @@ public class Cdi {
         DateTimeFormatter formDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formTime = DateTimeFormatter.ofPattern("HH-mm-ss");
 
-        String fileContent = "Informações da Simulação:\nData: " + formDate.format(date) + "\nHora: " + formTime.format(time) + "\n\nMensal: \n";
+        String fileContent = "Informações da Simulação:\nData: " + formDate.format(date) + "\nHora: " + formTime.format(time) + "\nTaxa do CDI (anual):" + this.yearTax + "%" + "\nTaxa do CDI (mensal): "+ this.tax + "%" + "\n\nMensal: \n";
 
         double total = getInitialInvestment();
         int months = getYearsOfInvestment() * 12;
