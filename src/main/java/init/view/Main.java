@@ -43,6 +43,8 @@ public class Main extends javax.swing.JFrame {
         descTotal = new javax.swing.JLabel();
         finalValue = new javax.swing.JTextField();
 
+        setTitle("Cdi Simulator");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         descResults.setFont(new java.awt.Font("Consolas", 1, 18));
@@ -336,6 +338,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 if (initialInv > 0 && yearInves > 0) {
+                    cdb.setYearTax();
                     cdb.setTax();
                     cdb.setInitialInvestment(initialInv);
                     cdb.setYearsOfInvestment(yearInves);

@@ -1,3 +1,11 @@
-/target/
-/.vscode/
-src/main/resources/.env
+#  ignorando target #
+/target
+
+# VS Code #
+.vscode/
+
+# IntelliJ #
+.idea
+
+# special infos #
+.env
